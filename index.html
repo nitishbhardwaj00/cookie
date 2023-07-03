@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--Very basic body-->
+    <!-- <input type="text" placeholder="Cookie value..." class="val" /><br><br> -->
+    <input type="checkbox" class="val" /><br><br>
+    <button class="create">Create Cookie</button>
+    <button class="get">Get Cookie</button>
+    <button class="delete">Delete Cookie</button>
+
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
+    $(document).ready(function(){
+            
+            //Variables
+            var val  = $(".val");
+            var crt  = $(".create");
+            var getc = $(".get");
+            var delc = $(".delete");//The mistake I made was it said .get instead of .delete, this has been corrected. Sorry for any confusion.
+            
+            //Cookie code (cookie monster says yum! (parody))
+            
+            //Create cookie
+            crt.click(function(){
+               
+
+                if($(".val").prop('checked') == true){
+                    Cookies.set("first-cookie", 'true', {expires: 365});
+                }else{
+                    Cookies.set("first-cookie", 'false', {expires: 365});
+                }
+
+                
+                
+            });
+
+
+            
+            //Read the cookie value
+            getc.click(function(){
+                
+                var cookieval = Cookies.get("first-cookie");
+                
+                alert("Cookie value is " + cookieval);
+                
+            });
+            
+            //Remove the cookie
+            delc.click(function(){
+                
+                Cookies.remove("first-cookie");
+                
+            });
+            
+        });
+        
+var cooValue = Cookies.get("first-cookie");
+console.log(cooValue);
+        localStorage.setItem('test', cooValue);
+
+        if(cooValue == 'false'){
+$('.val').removeAttr('checked');
+        }else{
+            $('.val').attr('checked', localStorage.getItem("test"));
+        }
+        
+</script>
+</body>
+</html>
